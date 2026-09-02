@@ -1,0 +1,345 @@
+/* =========================================================
+   Cátedra Paradigmas 3 - Hoja de estilos única del sitio
+   Estrategia: Desktop-first (media queries con max-width)
+   ========================================================= */
+
+/* ---------- 1. Reset básico y variables ---------- */
+:root {
+    --azul-oscuro: #0f172a;   /* header y footer */
+    --azul-claro:  #0ea5e9;   /* acentos, botones, links activos */
+    --verde:       #22c55e;   /* precio y botón de compra en detalle */
+    --gris-fondo:  #f1f5f9;   /* fondo del body */
+    --gris-texto:  #64748b;   /* texto secundario */
+    --borde:       #e2e8f0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;   /* el padding no agranda la caja */
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--gris-fondo);
+    color: var(--azul-oscuro);
+    line-height: 1.6;
+    display: flex;            /* truco para que el footer quede abajo */
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ---------- 2. Encabezado y navegación (Flexbox) ---------- */
+header {
+    background-color: var(--azul-oscuro);
+    color: #ffffff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;  /* logo a la izquierda, menú a la derecha */
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.6rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* La clase .activo marca en qué página estamos parados */
+nav a.activo {
+    color: var(--azul-claro);
+    background-color: rgba(14, 165, 233, 0.15);
+}
+
+/* ---------- 3. Contenedor principal ---------- */
+main {
+    flex: 1;                  /* ocupa el espacio sobrante */
+    width: 90%;
+    max-width: 1150px;
+    margin: 30px auto;
+}
+
+.tarjeta-contenido {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 35px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+h2 {
+    font-size: 1.7rem;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--borde);
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+code {
+    background-color: var(--gris-fondo);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+.imagen-portada {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+}
+
+/* ---------- 4. Tabla de productos ---------- */
+.contenedor-tabla {
+    overflow-x: auto;         /* barra horizontal en pantallas chicas */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;   /* une los bordes de las celdas */
+}
+
+thead {
+    background-color: #f8fafc;
+}
+
+th, td {
+    text-align: left;
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+td a {
+    color: var(--azul-claro);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ---------- 5. Grilla de tarjetas (CSS Grid) ---------- */
+.grilla-productos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* 3 columnas iguales */
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.producto {
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    overflow: hidden;         /* recorta la imagen a las esquinas redondeadas */
+    display: flex;
+    flex-direction: column;
+}
+
+.producto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;        /* recorta sin deformar */
+    display: block;
+}
+
+.producto-datos {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.producto h3 {
+    margin-bottom: 10px;
+}
+
+.producto .precio {
+    color: var(--azul-claro);
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    flex: none;
+}
+
+.producto p {
+    color: var(--gris-texto);
+    font-size: 0.9rem;
+    flex: 1;                  /* empuja el botón al pie de la tarjeta */
+}
+
+/* ---------- 6. Botones ---------- */
+.boton {
+    display: inline-block;
+    background-color: var(--azul-claro);
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+.boton:hover {
+    opacity: 0.9;
+}
+
+.boton-verde {
+    background-color: var(--verde);
+}
+
+/* ---------- 7. Ficha de detalle (2 columnas) ---------- */
+.ficha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: start;
+}
+
+.ficha img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+.precio-detalle {
+    color: var(--verde);
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.ficha ul {
+    margin: 0 0 25px 20px;
+}
+
+.ficha li {
+    margin-bottom: 6px;
+    color: #334155;
+}
+
+/* ---------- 8. Formulario de compra ---------- */
+.campo {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 0.95rem;
+}
+
+input:focus, select:focus {
+    outline: 2px solid var(--azul-claro);
+    border-color: var(--azul-claro);
+}
+
+/* Fila de dos campos lado a lado */
+.fila-doble {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+fieldset {
+    border: 1px solid var(--borde);
+    border-radius: 5px;
+    padding: 18px 25px;
+    margin-bottom: 25px;
+}
+
+legend {
+    font-weight: bold;
+    padding: 0 8px;
+}
+
+fieldset label {
+    font-weight: bold;
+    margin: 8px 0;
+}
+
+fieldset input[type="checkbox"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+}
+
+/* ---------- 9. Pie de página ---------- */
+footer {
+    background-color: var(--azul-oscuro);
+    color: var(--gris-texto);
+    text-align: center;
+    padding: 25px 20px;
+    font-size: 0.9rem;
+}
+
+/* =========================================================
+   10. ADAPTABILIDAD (media queries, de mayor a menor)
+   ========================================================= */
+
+/* Tablet: la grilla pasa de 3 a 2 columnas */
+@media (max-width: 900px) {
+    .grilla-productos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .ficha {
+        grid-template-columns: 1fr;   /* la ficha se apila */
+        gap: 25px;
+    }
+}
+
+/* Celular: todo en una sola columna y menú centrado */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+    nav ul {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .grilla-productos,
+    .fila-doble {
+        grid-template-columns: 1fr;
+    }
+    .tarjeta-contenido {
+        padding: 25px 20px;
+    }
+}
