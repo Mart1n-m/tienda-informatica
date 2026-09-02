@@ -5,10 +5,10 @@
 
 /* ---------- 1. Reset básico y variables ---------- */
 :root {
-    --azul-oscuro: #0f172a;   /* header y footer */
+    --azul-oscuro: #31008d;   /* header y footer */
     --azul-claro:  #0ea5e9;   /* acentos, botones, links activos */
     --verde:       #22c55e;   /* precio y botón de compra en detalle */
-    --gris-fondo:  #f1f5f9;   /* fondo del body */
+    --gris-fondo:  #686600;   /* fondo del body */
     --gris-texto:  #64748b;   /* texto secundario */
     --borde:       #e2e8f0;
 }
